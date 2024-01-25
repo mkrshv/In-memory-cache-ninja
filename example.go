@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	cache "in_memory_cache/internal"
+
+	cache "github.com/mkrshv/In-memory-cache-ninja/internal"
 )
 
 func main() {
