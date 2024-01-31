@@ -2,20 +2,27 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	cache "github.com/mkrshv/In-memory-cache-ninja/internal"
 )
 
 func main() {
-	cache := cache.New()
+	c := cache.New()
 
-	cache.Set("userId", 42)
-	userId := cache.Get("userId")
+	c.Set("UserID", 42, time.Second*5)
 
-	fmt.Println(userId)
+	if id, err := c.Get("UserID"); err != nil {
+		panic(err)
+	} else {
+		fmt.Println(id)
+	}
 
-	cache.Delete("userId")
-	userId = cache.Get("userId")
+	time.Sleep(time.Second * 6)
 
-	fmt.Println(userId)
+	if id, err := c.Get("UserID"); err != nil {
+		panic(err)
+	} else {
+		fmt.Println(id)
+	}
 }
